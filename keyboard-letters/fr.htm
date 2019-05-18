@@ -19,11 +19,9 @@
         #imageContainer {
             float: right;
 
-            background: no-repeat center center fixed; 
-            -webkit-background-size: contain;
-            -moz-background-size: contain;
-            -o-background-size: contain;
+            background-position: center;
             background-size: contain;
+            background-repeat: no-repeat;
         }
 
         #keyPressed {
@@ -94,6 +92,11 @@
 
         var jImageContainer = $("#imageContainer")
         function search(text) {
+            if (!text) {
+                showImage("");
+                return;
+            }
+
             var textUpper = text.toUpperCase();
             var existingImage = images[textUpper];
             if (existingImage!=null) {
@@ -143,6 +146,7 @@
             );*/
         }
         function showImage(imageSrc) {
+            console.log(imageSrc);
             jImageContainer.css("background-image", "url('" + imageSrc + "')");
         }
 
@@ -186,7 +190,7 @@
                 as: [ "Humain", "Habit", "Hache" ]
             },
             "I": {
-                as: [ "Image", "Incendie" ]
+                as: [ "Incendie", "Igloo" ]
             },
             "J": {
                 as: [ "Jeu", "Jaguar", "Jardin" ]
@@ -204,10 +208,10 @@
                 as: [ "Nager", "Neige" ]
             },
             "O": {
-                as: [ "Orange", "Oasis", "Océan" ]
+                as: [ "Orange", "Océan" ]
             },
             "P": {
-                as: [ "Papa", "Perruche", "Perroquet", "Panda", "Pluie", "Pelle" ]
+                as: [ "Papa", "Perruche", "Perroquet", "Panda", "Pluie" ]
             },
             "Q": {
                 as: [ "Queue", "Quai" ]
@@ -238,7 +242,7 @@
                 as: [ "Yahourt" ]
             },
             "Z": {
-                as: [ "Zèbre", "Zoo" ]
+                as: [ "Zèbre" ]
             }
         };
 
@@ -262,10 +266,7 @@
 
             say(text);
             show(keyValue);
-
-            if (searchValue!=null) {
-                search(searchValue);
-            }
+            search(searchValue);
         });
 
 
